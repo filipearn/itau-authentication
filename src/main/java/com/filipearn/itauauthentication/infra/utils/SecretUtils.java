@@ -6,7 +6,7 @@ import java.nio.file.Path;
 
 public class SecretUtils {
 
-    public static String extract(String secret) throws IOException {
+    public static String extract(final String secret) throws IOException {
         Path secretPath = Path.of(secret);
 
         if(Files.exists(secretPath) && !Files.isDirectory(secretPath)){

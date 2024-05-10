@@ -14,7 +14,7 @@ public class JWTValidator {
         this.strategyMap = strategyMap;
     }
 
-    public boolean validateJWT(Map<String, String> claims) {
+    public boolean validateJWT(final Map<String, String> claims) {
         for (Map.Entry<String, String> entry : claims.entrySet()) {
             String claimName = entry.getKey();
             String claimValue = entry.getValue();

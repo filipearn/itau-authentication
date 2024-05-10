@@ -7,7 +7,7 @@ import static com.filipearn.itauauthentication.infra.utils.MessageConstants.CLAI
 @Slf4j
 public class NameClaimValidationStrategy extends AbstractJWTValidationStrategy{
     @Override
-    public boolean validateClaim(String claimName, String claimValue) {
+    public boolean validateClaim(final String claimName, final String claimValue) {
 
         if(!super.validateClaim(claimName, claimValue)){
             return false;

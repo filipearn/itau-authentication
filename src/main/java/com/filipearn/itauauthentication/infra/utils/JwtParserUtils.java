@@ -12,7 +12,7 @@ import java.util.Map;
 @Slf4j
 public class JwtParserUtils {
 
-    public static Map<String, String> getClaims(String jwt, final String secretKey) {
+    public static Map<String, String> getClaims(final String jwt, final String secretKey) {
 
         Map<String, String> claimsMap = new HashMap<>();
 

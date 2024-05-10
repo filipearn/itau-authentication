@@ -7,7 +7,7 @@ import static com.filipearn.itauauthentication.infra.utils.MessageConstants.CLAI
 @Slf4j
 public class SeedClaimValidationStrategy extends AbstractJWTValidationStrategy{
     @Override
-    public boolean validateClaim(String claimName, String claimValue) {
+    public boolean validateClaim(final String claimName, final String claimValue) {
 
         if(!super.validateClaim(claimName, claimValue)){
             return false;
@@ -27,7 +27,7 @@ public class SeedClaimValidationStrategy extends AbstractJWTValidationStrategy{
         return isPrime;
     }
 
-    private boolean isPrime(long number){
+    private boolean isPrime(final long number){
         if (number <= 1) {
             return false;
         }

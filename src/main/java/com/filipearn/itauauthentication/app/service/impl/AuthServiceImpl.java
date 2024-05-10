@@ -24,7 +24,7 @@ public class AuthServiceImpl implements AuthService {
     private JwtSecretConfig secretConfig;
 
     @Override
-    public String checkJwt(String jwt) {
+    public String checkJwt(final String jwt) {
         log.info(INIT_VALIDATION, jwt);
 
         if(jwt == null){

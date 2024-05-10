@@ -8,7 +8,7 @@ import static com.filipearn.itauauthentication.infra.utils.MessageConstants.CLAI
 public class AbstractJWTValidationStrategy implements JWTValidationStrategy {
 
     @Override
-    public boolean validateClaim(String claimName, String claimValue) {
+    public boolean validateClaim(final String claimName, final String claimValue) {
         //foi considerado que se o valor da claim Name for nulo ou em branco é uma claim inválida
         if(claimValue == null || claimValue.isBlank()){
             log.info(CLAIM_VALIDATION, claimName, false, "valor de claim é nulo ou em branco");

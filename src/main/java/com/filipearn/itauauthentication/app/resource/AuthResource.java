@@ -17,7 +17,7 @@ public class AuthResource implements AuthApiDelegate {
     private AuthService authService;
 
     @Override
-    public CompletableFuture<ResponseEntity<Object>> authenticationPost(String jwt) {
+    public CompletableFuture<ResponseEntity<Object>> authenticationPost(final String jwt) {
         String validation = authService.checkJwt(jwt);
         return CompletableFuture.completedFuture(ResponseEntity.ok().body(validation));
     }
