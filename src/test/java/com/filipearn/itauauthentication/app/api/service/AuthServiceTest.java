@@ -91,4 +91,15 @@ public class AuthServiceTest {
 
         Assertions.assertEquals(FALSO, ret, "Must be equals");
     }
+
+    @Test
+    public void testShouldReturnFalseWhenJWTHasClaimsNameGreaterThan256() {
+        String jwtHasClaimsLowerCase = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJSb2xlIjoiQWRtaW4iLCJTZWVkIjoiNzg0MSIsIk5hbWUiOiJ2YWxvciBkZSBjbGFpbSBwb3NzdWkgY2FyYWN0ZXIgZGUgbsO6bWVyb3N2YWxvciBkZSBjbGFpbSBwb3NzdWkgY2FyYWN0ZXIgZGUgbsO6bWVyb3N2YWxvciBkZSBjbGFpbSBwb3NzdWkgY2FyYWN0ZXIgZGUgbsO6bWVyb3N2YWxvciBkZSBjbGFpbSBwb3NzdWkgY2FyYWN0ZXIgZGUgbsO6bWVyb3N2YWxvdmFsb3IgZGUgY2xhaW0gcG9zc3VpIGNhcmFjdGVyIGRlIG7Dum1lcm9zdmFsb3IgZGUgY2xhaW0gcG9zc3VpIGNhcmFjdGVyIGRlIG7Dum1lcm9zdmFsb3IgZGUgY2xhaW0gcG9zc3VpIGNhcmFjdGVyIGRlIG7Dum1lcm9zdmFsb3IgZGUgY2xhaW0gcG9zc3VpIGNhcmFjdGVyIGRlIG7Dum1lcm9zdmFsb3IgZGUgY2xhaW0gcG9zc3VpIGNhcmFjdGVyIGRlIG7Dum1lcm9zdmFsb3IgZGUgY2xhaW0gcG9zc3VpIGNhcmFjdGVyIGRlIG7Dum1lcm9zciBkZSBjbGFpbSBwb3NzdWkgY2FyYWN0ZXIgZGUgbsO6bWVyb3N2YWxvciBkZSBjbGFpbSBwb3NzdWkgY2FyYWN0ZXIgZGUgbsO6bWVyb3N2YWxvciBkZSBjbGFpbSBwb3NzdWkgY2FyYWN0ZXIgZGUgbsO6bWVyb3N2YWxvciBkZSBjbGFpbSBwb3NzdWkgY2FyYWN0ZXIgZGUgbsO6bWVyb3MifQ.YVFGhiPDVaKIHIZBSk8qYOipDoXD0b7S9Ruld_Le0_o";
+
+        String ret = service.checkJwt(jwtHasClaimsLowerCase);
+
+        Assertions.assertEquals(FALSO, ret, "Must be equals");
+    }
+
+
 }
