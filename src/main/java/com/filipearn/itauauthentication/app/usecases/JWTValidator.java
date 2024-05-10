@@ -21,7 +21,7 @@ public class JWTValidator {
             if(strategy == null){
                 log.error("Claim {} nao existente no JWT: falso", claimName);
                 return false;
-            } else if (!strategy.validateClaim(claimValue)) {
+            } else if (!strategy.validateClaim(claimName, claimValue)) {
                 return false;
             }
         }
