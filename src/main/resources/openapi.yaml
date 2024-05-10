@@ -1,0 +1,56 @@
+openapi: 3.0.1
+info:
+  title: Itau Authentication Challenge
+  description: Itau Authentication Challenge
+  version: 1.0.0
+
+tags:
+  - name: Auth
+    description: Auth
+
+paths:
+  '/Authentications':
+    post:
+      tags:
+        - Auth
+      parameters:
+        - $ref: '#/components/parameters/JWT'
+      responses:
+        '200':
+          $ref: '#/components/responses/CreateAuthCreated'
+      summary: Evaluate a JWT token
+      description: Evaluate a JWT token using specific rules
+
+components:
+  schemas:
+    CodeType:
+      description: Code type
+      default: null
+      type: string
+    ShortTextType:
+      description: Short text type
+      default: null
+      type: string
+  parameters:
+    JWT:
+      name: jwt
+      description: JWT Token
+      schema:
+        $ref: '#/components/schemas/CodeType'
+      in: query
+      required: true
+  responses:
+    CreateAuthCreated:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShortTextType'
+            description: OK
+          examples:
+            Verdadeiro:
+              summary: JWT válido
+              value: verdadeiro
+            Falso:
+              summary: JWT invalido
+              value: falso
+      description: OK
