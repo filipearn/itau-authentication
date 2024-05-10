@@ -19,12 +19,6 @@ public class JWTValidator {
             String claimName = entry.getKey();
             String claimValue = entry.getValue();
 
-            //foi considerado que se o valor da claim Name for nulo ou em branco é uma claim inválida
-            if(claimValue == null || claimValue.isBlank()){
-                log.info(CLAIM_VALIDATION, claimName, false, "valor de claim é nulo ou em branco");
-                return false;
-            }
-
             JWTValidationStrategy strategy = strategyMap.get(claimName);
             if(strategy == null){
                 log.info("Claim {} nao existente no JWT: falso", claimName);
