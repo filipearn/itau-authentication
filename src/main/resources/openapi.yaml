@@ -9,7 +9,7 @@ tags:
     description: Auth
 
 paths:
-  '/Authentications':
+  '/authentications':
     post:
       tags:
         - Auth
@@ -17,7 +17,7 @@ paths:
         - $ref: '#/components/parameters/JWT'
       responses:
         '200':
-          $ref: '#/components/responses/CreateAuthCreated'
+          $ref: '#/components/responses/ValidationResponse200'
       summary: Evaluate a JWT token
       description: Evaluate a JWT token using specific rules
 
@@ -40,7 +40,7 @@ components:
       in: query
       required: true
   responses:
-    CreateAuthCreated:
+    ValidationResponse200:
       content:
         application/json:
           schema:
