@@ -12,5 +12,6 @@ logging:
     servlet: WARN
     web: WARN
 
-token:
-  signingkey: {JWT_SIGNING_KEY}
+application:
+  token:
+    signing-key-path: ${JWT_SIGNING_KEY}

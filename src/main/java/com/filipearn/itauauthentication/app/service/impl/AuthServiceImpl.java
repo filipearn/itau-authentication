@@ -2,20 +2,26 @@ package com.filipearn.itauauthentication.app.service.impl;
 
 import com.filipearn.itauauthentication.app.service.AuthService;
 import com.filipearn.itauauthentication.app.usecases.*;
+import com.filipearn.itauauthentication.infra.config.JwtSecretConfig;
 import com.filipearn.itauauthentication.infra.utils.JwtParserUtils;
 import com.filipearn.itauauthentication.presentation.ValidationMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.filipearn.itauauthentication.app.enumeration.ClaimEnum.*;
-import static com.filipearn.itauauthentication.infra.utils.MessageConstants.*;
+import static com.filipearn.itauauthentication.infra.utils.MessageConstants.INIT_VALIDATION;
+import static com.filipearn.itauauthentication.infra.utils.MessageConstants.RESULT;
 
 @Slf4j
 @Service
 public class AuthServiceImpl implements AuthService {
+
+    @Autowired
+    private JwtSecretConfig secretConfig;
 
     @Override
     public String checkJwt(String jwt) {
@@ -37,7 +43,7 @@ public class AuthServiceImpl implements AuthService {
         Map<String, String> claims;
 
         try {
-            claims = JwtParserUtils.getClaims(jwt);
+            claims = JwtParserUtils.getClaims(jwt, secretConfig.getSigningKey());
         } catch (Exception ex){
             log.error(ex.getMessage(), ex);
             log.info(RESULT, false);

@@ -12,13 +12,13 @@ import java.util.Map;
 @Slf4j
 public class JwtParserUtils {
 
-    public static Map<String, String> getClaims(String jwt) {
+    public static Map<String, String> getClaims(String jwt, final String secretKey) {
 
         Map<String, String> claimsMap = new HashMap<>();
 
         try {
             Jws<Claims> parsedToken = Jwts.parserBuilder()
-                    .setSigningKey("xf/bNOeCaeqCttavvdd+JNdJ68s5Azjh16+T+l8X3AA=")
+                    .setSigningKey(secretKey)
                     .build()
                     .parseClaimsJws(jwt);
 
