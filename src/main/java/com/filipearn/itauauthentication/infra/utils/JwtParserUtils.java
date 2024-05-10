@@ -27,7 +27,7 @@ public class JwtParserUtils {
                 claimsMap.put(entry.getKey(), entry.getValue().toString());
             }
         } catch (Exception e) {
-            throw new JWTParseException("Error parsing JWT");
+            throw new JWTParseException("JWT invalido");
         }
 
         return claimsMap;

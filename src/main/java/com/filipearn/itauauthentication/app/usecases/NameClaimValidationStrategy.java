@@ -8,19 +8,18 @@ import static com.filipearn.itauauthentication.infra.utils.MessageConstants.CLAI
 public class NameClaimValidationStrategy implements JWTValidationStrategy{
     @Override
     public boolean validateClaim(String claimName, String claimValue) {
-        //considero que se o valor da claim Name for nulo ou em branco é uma claim inválida
-        if(claimValue == null || claimValue.isBlank()){
-            log.info(CLAIM_VALIDATION, claimName, false, "valor de claim é nulo ou em branco");
+        if(claimValue.length() > 256){
+            log.info(CLAIM_VALIDATION, claimName, false, "valor de claim é maior que 256 caracteres");
             return false;
         }
 
         for (char c : claimValue.toCharArray()) {
             if (Character.isDigit(c)) {
-                log.info(CLAIM_VALIDATION, claimName, false, "valor de claim é contém dígito");
+                log.info(CLAIM_VALIDATION, claimName, false, "valor de claim possui caracter de números");
                 return false;
             }
         }
-        log.info(CLAIM_VALIDATION, claimName, false, "valor de claim é contém dígito");
+        log.info(CLAIM_VALIDATION, claimName, true, "validada com sucesso");
         return true;
     }
 }
