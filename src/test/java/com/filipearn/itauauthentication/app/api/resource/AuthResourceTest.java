@@ -1,4 +1,4 @@
-package com.filipearn.itauauthentication.app.api;
+package com.filipearn.itauauthentication.app.api.resource;
 
 import com.filipearn.itauauthentication.ItauAuthenticationApplication;
 import com.filipearn.itauauthentication.app.service.AuthService;
