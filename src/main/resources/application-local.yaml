@@ -11,3 +11,6 @@ logging:
     app: INFO
     servlet: WARN
     web: WARN
+
+token:
+  signingkey: {JWT_SIGNING_KEY}

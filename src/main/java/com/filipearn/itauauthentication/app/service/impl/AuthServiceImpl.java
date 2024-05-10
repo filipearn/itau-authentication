@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.filipearn.itauauthentication.app.enumeration.ClaimEnum.*;
+import static com.filipearn.itauauthentication.infra.utils.MessageConstants.*;
 
 @Slf4j
 @Service
@@ -18,6 +19,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String checkJwt(String jwt) {
+        log.info(INIT_VALIDATION, jwt);
         Map<String, JWTValidationStrategy> strategies = new HashMap<>();
         strategies.put(NAME.getDescription(), new NameClaimValidationStrategy());
         strategies.put(ROLE.getDescription(), new RoleClaimValidationStrategy());
@@ -31,13 +33,13 @@ public class AuthServiceImpl implements AuthService {
             claims = JwtParserUtils.getClaims(jwt);
         } catch (Exception ex){
             log.error(ex.getMessage(), ex);
-            log.info("Result: {} - JWT: {}", false, jwt);
+            log.info(RESULT, false);
             return ValidationMapper.toDTO(false);
         }
 
         boolean isValid = validator.validateJWT(claims);
 
-        log.info("Result: {} - JWT: {}", isValid, jwt);
+        log.info(RESULT, isValid);
 
         return ValidationMapper.toDTO(isValid);
     }
