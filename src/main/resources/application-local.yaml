@@ -1,0 +1,13 @@
+server:
+  servlet:
+    context-path: /itau-challenge
+  port: 9090
+
+logging:
+  config: classpath:log/logback.xml
+  level:
+    root: INFO
+    spring: INFO
+    app: INFO
+    servlet: WARN
+    web: WARN
