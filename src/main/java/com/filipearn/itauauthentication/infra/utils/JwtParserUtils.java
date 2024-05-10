@@ -1,5 +1,6 @@
 package com.filipearn.itauauthentication.infra.utils;
 
+import com.filipearn.itauauthentication.infra.exception.JWTParseException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -26,9 +27,7 @@ public class JwtParserUtils {
                 claimsMap.put(entry.getKey(), entry.getValue().toString());
             }
         } catch (Exception e) {
-
-            log.error("Erro: ", e);
-
+            throw new JWTParseException("Error parsing JWT");
         }
 
         return claimsMap;
