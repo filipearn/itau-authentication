@@ -19,7 +19,7 @@ public interface AuthApi {
             value = "v1/authentications"
     )
     default CompletableFuture<ResponseEntity<Object>> authenticationPost(
-            @RequestParam(name = "jwt") String jwt){
+            @RequestParam(name = "jwt", required = false) String jwt){
         return getDelegate().authenticationPost(jwt);
     }
 }

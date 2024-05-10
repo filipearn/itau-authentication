@@ -20,6 +20,13 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String checkJwt(String jwt) {
         log.info(INIT_VALIDATION, jwt);
+
+        if(jwt == null){
+            log.info("JWT é nulo");
+            log.info(RESULT, false);
+            return ValidationMapper.toDTO(false);
+        }
+
         Map<String, JWTValidationStrategy> strategies = new HashMap<>();
         strategies.put(NAME.getDescription(), new NameClaimValidationStrategy());
         strategies.put(ROLE.getDescription(), new RoleClaimValidationStrategy());
