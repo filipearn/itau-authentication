@@ -6,9 +6,14 @@ import static com.filipearn.itauauthentication.app.enumeration.RoleEnum.*;
 import static com.filipearn.itauauthentication.infra.utils.MessageConstants.CLAIM_VALIDATION;
 
 @Slf4j
-public class RoleClaimValidationStrategy implements JWTValidationStrategy{
+public class RoleClaimValidationStrategy extends AbstractJWTValidationStrategy{
     @Override
     public boolean validateClaim(String claimName, String claimValue) {
+
+        if(!super.validateClaim(claimName, claimValue)){
+            return false;
+        }
+
         if(ADMIN.getDescription().equals(claimValue) ||
                 MEMBER.getDescription().equals(claimValue) ||
                 EXTERNAL.getDescription().equals(claimValue)){
