@@ -2,6 +2,7 @@ package com.filipearn.itauauthentication.app.api.resource;
 
 import com.filipearn.itauauthentication.ItauAuthenticationApplication;
 import com.filipearn.itauauthentication.app.service.AuthService;
+import com.filipearn.itauauthentication.infra.config.JwtSecretConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class AuthResourceTest {
 
     @MockBean
     private AuthService authService;
+
+    @MockBean
+    private JwtSecretConfig secretConfig;
 
     @Test
     public void testShouldReturnOkWhenIsJwtIsValid(){

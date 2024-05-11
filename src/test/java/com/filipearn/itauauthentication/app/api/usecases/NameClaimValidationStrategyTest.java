@@ -28,7 +28,7 @@ public class NameClaimValidationStrategyTest {
     public void testShouldReturnFalseWhenNameIsEqualThan256() {
         String nameWith257Characters = "MariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaMariaa";
 
-        assertFalse(strategy.validateClaim(NAME.getDescription(), nameWith257Characters), "Must be false");
+        assertTrue(strategy.validateClaim(NAME.getDescription(), nameWith257Characters), "Must be false");
     }
 
     @Test

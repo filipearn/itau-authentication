@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: itau-authentication
+
+server:
+  servlet:
+    context-path: /itau-challenge
+  port: 8080
+
+logging:
+  config: classpath:log/logback.xml
+  level:
+    root: INFO
+    spring: INFO
+    app: INFO
+    servlet: WARN
+    web: WARN
+
+application:
+  token:
+    signing-key-path: ${JWT_SIGNING_KEY:xf/bNOeCaeqCttavvdd+JNdJ68s5Azjh16+T+l8X3AA=}
