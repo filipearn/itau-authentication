@@ -1,0 +1,18 @@
+version: '3'
+
+networks:
+  auth-network:
+    driver: bridge
+
+services:
+  itau-auth:
+    image: itau-challenge:1.0.0
+    command: [ "java", "-jar", "app.jar" ]
+    networks:
+      - auth-network
+    ports:
+      - "8080:8080"
+    volumes:
+      - /etc/credentials:/etc/credentials
+    environment:
+      JWT_SIGNING_KEY: /etc/credentials/jwt-signing-key

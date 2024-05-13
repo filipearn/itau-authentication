@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.filipearn</groupId>
 	<artifactId>itau-authentication</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>itau-authentication</name>
 	<description>Itau Authentication Challange</description>
 	<properties>
@@ -98,23 +98,23 @@
 				<configuration>
 				</configuration>
 				<executions>
-					<execution>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<skipValidateSpec>true</skipValidateSpec>
-							<apiPackage>com.filipearn.itauauthentication.app.api</apiPackage>
-							<modelPackage>com.filipearn.itauauthentication.domain.model</modelPackage>
-							<apiPackage>com.filipearn.itauauthentication.api</apiPackage>
-							<inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>
-							<generatorName>java</generatorName>
-							<configOptions>
-								<sourceFolder>src/gen/java/main</sourceFolder>
-								<dateLibrary>java17</dateLibrary>
-							</configOptions>
-						</configuration>
-					</execution>
+<!--					<execution>-->
+<!--						<goals>-->
+<!--							<goal>generate</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<skipValidateSpec>true</skipValidateSpec>-->
+<!--							<apiPackage>com.filipearn.itauauthentication.app.api</apiPackage>-->
+<!--							<modelPackage>com.filipearn.itauauthentication.domain.model</modelPackage>-->
+<!--							<apiPackage>com.filipearn.itauauthentication.api</apiPackage>-->
+<!--							<inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>-->
+<!--							<generatorName>java</generatorName>-->
+<!--							<configOptions>-->
+<!--								<sourceFolder>src/gen/java/main</sourceFolder>-->
+<!--								<dateLibrary>java17</dateLibrary>-->
+<!--							</configOptions>-->
+<!--						</configuration>-->
+<!--					</execution>-->
 				</executions>
 			</plugin>
 			<plugin>
