@@ -9,7 +9,7 @@ tags:
     description: Auth
 
 paths:
-  '/authentications':
+  '/itau-challenge/v1/authentications':
     post:
       tags:
         - Auth
