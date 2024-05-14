@@ -1,6 +1,5 @@
 FROM openjdk:17
 
-RUN apk --no-cache add curl
 VOLUME /tmp
 ARG REGION_ARG=us-east-2
 ARG ACCESS_ARG
