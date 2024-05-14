@@ -25,8 +25,9 @@
 #    and best practices on handling the access key credentials.
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
     
 name: Deploy to Amazon ECS
 
