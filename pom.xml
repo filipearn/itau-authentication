@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.filipearn</groupId>
 	<artifactId>itau-authentication</artifactId>
-	<version>1.0.4</version>
+	<version>1.0.5</version>
 	<name>itau-authentication</name>
 	<description>Itau Authentication Challange</description>
 	<properties>
