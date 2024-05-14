@@ -74,7 +74,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: 874584474631.dkr.ecr.us-east-1.amazonaws.com/itau-challenge
+        ECR_REPOSITORY: itau-challenge
         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
