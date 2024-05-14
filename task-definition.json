@@ -1,9 +1,9 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:874584474631:task-definition/ecsTaskExecutionRole:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:874584474631:task-definition/ecsTaskExecutionRole:3",
   "containerDefinitions": [
     {
       "name": "challenge",
-      "image": "874584474631.dkr.ecr.us-east-1.amazonaws.com/itau-challenge/auth:latest",
+      "image": "874584474631.dkr.ecr.us-east-1.amazonaws.com/itau-challenge:dd30c341ece5ef521ccca3f749e0ebde01e18915",
       "cpu": 0,
       "portMappings": [
         {
@@ -16,19 +16,15 @@
       ],
       "essential": true,
       "environment": [],
-      "environmentFiles": [],
       "mountPoints": [],
       "volumesFrom": [],
-      "ulimits": [],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/ecsTaskExecutionRole",
+          "awslogs-group": "challenge",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
-        },
-        "secretOptions": []
+        }
       },
       "systemControls": []
     }
@@ -37,7 +33,7 @@
   "taskRoleArn": "arn:aws:iam::874584474631:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::874584474631:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 1,
+  "revision": 3,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -64,9 +60,6 @@
     },
     {
       "name": "ecs.capability.task-eni"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
     }
   ],
   "placementConstraints": [],
@@ -83,7 +76,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2024-05-14T08:59:56.038Z",
+  "registeredAt": "2024-05-14T10:55:46.357Z",
   "registeredBy": "arn:aws:iam::874584474631:root",
   "tags": []
 }
