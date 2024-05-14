@@ -33,9 +33,9 @@ name: Deploy to Amazon ECS
 
 env:
   AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: 874584474631.dkr.ecr.us-east-1.amazonaws.com/itau-challenge           # set this to your Amazon ECR repository name
-  ECS_SERVICE: arn:aws:ecs:us-east-1:874584474631:service/challenge-cluster/challenge                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: arn:aws:ecs:us-east-1:874584474631:cluster/challenge-cluster                 # set this to your Amazon ECS cluster name
+  ECR_REPOSITORY: itau-challenge           # set this to your Amazon ECR repository name
+  ECS_SERVICE: challenge                 # set this to your Amazon ECS service name
+  ECS_CLUSTER: challenge-cluster                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: arn:aws:ecs:us-east-1:874584474631:task-definition/ecsTaskExecutionRole:1 # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: challenge           # set this to the name of the container in the
