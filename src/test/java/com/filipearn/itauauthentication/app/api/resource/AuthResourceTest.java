@@ -14,8 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.when;
+import java.io.IOException;
+
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,8 +37,11 @@ public class AuthResourceTest {
     private JwtSecretConfig secretConfig;
 
     @Test
-    public void testShouldReturnOkWhenIsJwtIsValid(){
+    public void testShouldReturnOkWhenIsJwtIsValid() throws IOException {
         String expected = "verdadeiro";
+
+        doNothing().when(secretConfig).init();
+
         when(authService.checkJwt(any())).thenReturn(expected);
 
         try{
@@ -51,8 +55,11 @@ public class AuthResourceTest {
     }
 
     @Test
-    public void testShouldReturnOkWhenIsJwtIsInvalid(){
+    public void testShouldReturnOkWhenIsJwtIsInvalid() throws IOException {
         String expected = "falso";
+
+        doNothing().when(secretConfig).init();
+
         when(authService.checkJwt(any())).thenReturn(expected);
 
         try{
