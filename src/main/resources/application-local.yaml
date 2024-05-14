@@ -14,4 +14,5 @@ logging:
 
 application:
   token:
-    signing-key-path: ${JWT_SIGNING_KEY}
+    aws-secret-signing-key-name: ${AWS_SECRET_KEY_NAME:jwt-itau-challenge}
+    signing-key-name: ${JWT_SIGNING_KEY_NAME:JWT_SIGNING_KEY}
