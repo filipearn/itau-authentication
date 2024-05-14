@@ -3,23 +3,32 @@ package com.filipearn.itauauthentication.infra.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.filipearn.itauauthentication.infra.utils.MessageConstants;
+import com.filipearn.itauauthentication.infra.utils.SecretUtils;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueResponse;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Map;
 
 @Slf4j
 @Getter
 @Configuration
 public class JwtSecretConfig {
+
+    @Autowired
+    private Environment environment;
 
     @Value("${application.token.aws-secret-signing-key-name}")
     private String awsSecretName;
@@ -30,7 +39,19 @@ public class JwtSecretConfig {
     private String signingKey;
 
     @PostConstruct
+    public void initLocal() throws IOException {
+        if (Arrays.asList(environment.getActiveProfiles()).contains("local")) {
+            log.info("Getting local configuration: Signing Key Path={}", getSigningKeyName());
+            this.signingKey = SecretUtils.extract(getSigningKeyName());
+        }
+    }
+
+    @PostConstruct
     public void init() throws IOException {
+
+        if (Arrays.asList(environment.getActiveProfiles()).contains("local")) {
+            return;
+        }
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -47,8 +68,7 @@ public class JwtSecretConfig {
         try {
             getSecretValueResponse = client.getSecretValue(getSecretValueRequest);
         } catch (Exception e) {
-            // For a list of exceptions thrown, see
-            // https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+            log.error(MessageConstants.SIGNING_KEY_ERROR_AWS, e);
             throw e;
         }
 
