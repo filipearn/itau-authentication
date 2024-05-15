@@ -54,6 +54,18 @@ mvn clean install
 java -jar -Dspring.profiles.active=local -DJWT_SIGNING_KEY_NAME=/caminho/para/arquivo/jwt-signing-key -DPORT:9090 target/nome-do-arquivo-jar.jar
 ~~~
 
+- para execução local com **docker**:
+  - profile já está sendo enviado, como padrão, no arquivo docker-compose.yaml: --spring.profiles.active=local
+  - caminho configurado no docker-compose.yaml para signing-key jwt: /etc/credentials/jwt-signing-key
+  Realize o build da imagem:
+~~~
+docker build -t itau-challenge:latest -f Dockerfile .
+~~~
+
+Execute o docker compose:
+~~~
+docker compose up -d
+~~~
 # Requisições e retornos esperados
 
 Para auxiliar nos testes, navegue até 'src/main/resources/insomnia' e acesse as coleções do insomnia.
