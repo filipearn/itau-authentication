@@ -49,6 +49,7 @@ mvn clean install
 - para execução local:
   - parâmetro de profile: local
   - caminho para arquivo que contém signing-key jwt: /caminho/para/arquivo/jwt-signing-key
+  - a aplicação está configurada na porta 9090 como padrão. Caso deseje mudar, enviar a variável de ambiente 'PORT' com o valor.
 
 ~~~
 java -jar -Dspring.profiles.active=local -DJWT_SIGNING_KEY_NAME=/caminho/para/arquivo/jwt-signing-key -DPORT:9090 target/nome-do-arquivo-jar.jar
@@ -57,14 +58,17 @@ java -jar -Dspring.profiles.active=local -DJWT_SIGNING_KEY_NAME=/caminho/para/ar
 - para execução local com **docker**:
   - profile já está sendo enviado, como padrão, no arquivo docker-compose.yaml: --spring.profiles.active=local
   - caminho configurado no docker-compose.yaml para signing-key jwt: /etc/credentials/jwt-signing-key
-  Realize o build da imagem:
+  - a aplicação está configurada na porta 9090 como padrão. Caso deseje mudar, enviar a variável de ambiente 'PORT' ao realizar docker compose.
+  
+
+Realize o build da imagem:
 ~~~
 docker build -t itau-challenge:latest -f Dockerfile .
 ~~~
 
 Execute o docker compose:
 ~~~
-docker compose up -d
+PORT=9090 docker-compose up -d
 ~~~
 # Requisições e retornos esperados
 
@@ -76,9 +80,6 @@ No insomnia, crie a variável de ambiente 'base_url'
   "base_url": "localhost:9090"
 }
 ~~~
-
-### Considerações
-- a aplicação está configurada na porta 9090 como padrão. Caso deseje mudar, enviar a variável de ambiente 'PORT' com o valor.
 
 **Caso 1: Token válido**
 ~~~json

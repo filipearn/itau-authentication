@@ -2,10 +2,14 @@ version: '3'
 
 services:
   itau-auth:
+    build:
+      context: .
+      args:
+        PORT: ${PORT:-9090}
     image: itau-challenge:latest
-    command: ["java", "--spring.profiles.active=local", "-jar", "app.jar"]
+    command: ["java", "--spring.profiles.active=local", "--server.port=${PORT:-9090}", "-jar", "app.jar"]
     ports:
-      - "9090:9090"
+      - "${PORT:-9090}:${PORT:-9090}"
     volumes:
       - /etc/credentials:/etc/credentials
     environment:
