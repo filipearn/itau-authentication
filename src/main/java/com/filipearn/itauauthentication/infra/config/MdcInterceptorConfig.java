@@ -1,23 +1,38 @@
 package com.filipearn.itauauthentication.infra.config;
 
+import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.api.trace.SpanContext;
+import io.opentelemetry.api.trace.Tracer;
+import io.opentelemetry.context.Context;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import java.util.UUID;
-import java.util.function.Function;
-
-import static com.filipearn.itauauthentication.infra.utils.LogConstants.*;
+import static com.filipearn.itauauthentication.infra.utils.LogConstants.SPAN_ID;
+import static com.filipearn.itauauthentication.infra.utils.LogConstants.TRACE_ID;
 
 @Component
 public class MdcInterceptorConfig implements HandlerInterceptor {
 
+    private final Tracer tracer;
+
+    public MdcInterceptorConfig(Tracer tracer) {
+        this.tracer = tracer;
+    }
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        MDC.put(TRACE_ID, request.getHeader(TRACE_ID) != null ?
-        request.getHeader(TRACE_ID) : getRandomUUID.apply(null));
+        Context context = Context.current();
+
+        Span span = Span.fromContext(context);
+
+        SpanContext spanContext = span.getSpanContext();
+
+        MDC.put(TRACE_ID, spanContext.getTraceId());
+        MDC.put(SPAN_ID, spanContext.getSpanId());
+
         return true;
     }
 
@@ -25,6 +40,4 @@ public class MdcInterceptorConfig implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         MDC.remove(TRACE_ID);
     }
-
-    public Function<Void, String> getRandomUUID = (nothing) -> UUID.randomUUID().toString();
 }
